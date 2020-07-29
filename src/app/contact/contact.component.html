@@ -33,7 +33,7 @@
       <div fxFlex="40">
         <h4>Map of our Location</h4>
       </div>
-    </div>
+    </div> 
   </div>
 
   <div fxFlex fxFlexOffset="20px" class="form-size">
@@ -44,20 +44,26 @@
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-          <mat-error></mat-error>
+          <mat-error *ngIf="formErrors.firstname"> {{formErrors.firstname}} </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="lastname" placeholder="Last Name" type="text">
+          <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="telnum" placeholder="Tel No." type="tel" required>
+          <input matInput formControlName="telnum" placeholder="Tel No." type="tel" pattern="[0-9]*" required>
+          <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error>
         </mat-form-field>
+
         <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="email" type="email" required>
+          <input matInput formControlName="email" placeholder="email" type="email" email required>
+          <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
         </mat-form-field>
+        
+
       </p>
 
       <table class="form-size">
@@ -79,7 +85,7 @@
         </mat-form-field>
       </p>
 
-      <button type="submit" mat-button class="background-primary text-floral-white">Submit</button> 
+      <button [disabled] ="!feedbackForm.valid" type="submit" mat-button class="background-primary text-floral-white">Submit</button> 
     </form>
   </div>
 </div>
